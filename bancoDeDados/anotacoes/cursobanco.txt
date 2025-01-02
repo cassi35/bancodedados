@@ -1,0 +1,81 @@
+DIAGRAMA de entidade relacionamento  (der)
+
+entidades:tabelas colunas ,atribuitos , campo e etc
+
+cada entidade é uma tabela no banco de dados 
+
+(PK):identificador na tabela  
+pk id
+*nao pode der outra pk é uma por tabeça 
+*nao se repete
+*nao pode mudar 
+*nao pode ser nula
+POSSO PEGAR O CPF E COLOCAR COMO PK COM ID
+
+(FK):perfis é uma chama de identificação de outra entidade
+pk id
+bio description
+user_id
+
+
+---------------------------------------------------
+RELACIONAMENTOS NO SQL
+crossfut seria o que liga ema entidade a outra 
+um registro esta relaciona a muitos outros registros de outra tabela 
+
+
+
+ONE-TO-ONE
+seria uma entidade para para outra tabela 
+ex:um  USUARIO tem nome ,ultimo nome, email password e vai gerar uma pk e essa pk de id
+ela vai compor o PROFILE que é outra identificação por tabela que compoe os dados do usuario como
+bio
+description
+id do USUARIO
+
+usuario-<-----||----->profile
+
+*se um usuario ou um perfil é deletado tem que deletar as duas entidades por que se nao corre risco a identidade do sistema
+
+
+
+ONE-TO-MANY
+um usuario tem que ter um ou mais perfis
+usuario-----||----perfil
+
+MANY-TO-MANY
+significa que muitos registro estao atrelados a muitos outras tabelas mas nao acontece diretamente
+por isso tem que ter uma JOIN table 
+usuario -----||------regrasUsuario------||-----regras
+|
+usuario ------||-----perfil
+usuarioRegras nao pode ser igual ao usuario id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

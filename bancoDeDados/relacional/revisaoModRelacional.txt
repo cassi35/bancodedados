@@ -1,0 +1,231 @@
+MODELO DE BANCO DE DADOS RELACIONAIS
+entidade : conteiner aonde se coloca dados ou algo
+atributos:sao os dados das coisas na entidade
+
+entao toda ENTIDADE tem ATRIBUTO 
+
+banco de dados RELACIONAL
+consegue fazer ligacoes 
+com essas entidades
+
+DIAGRAMA(DER):
+ |
+\|/
+
+ENTIDADE
+   |
+   |
+ |--|
+LIGACAO
+ |--|
+   |
+   |
+ENTIDADE
+
+
+CARDINALIDADE:
+
+
+muitos-para-muitos
+ex:         (n)                (n)  
+pessoas ---->asistem<---------cursos
+uma (pessoa) assiste um ou varios cursos entao (n)
+um (curso) pode ser assistido por um ou varias pessoas (n)
+
+
+
+um-para-um
+ex:  1                        1
+marido ---->casa com<--------esposa
+uma marido pode se casar com uma esposa
+
+
+
+um-para-muitos
+ex:         1                     (n)
+funcionario------>cuida<---------dependente
+um funcionario pode cuidar de varios dependentes
+
+1)modelar a entidade
+2)classificar relacionamentos
+
+
+chava estrangeira é uma chave que veio de algum lugar
+ex:
+um-para-um
+marido------------> casa <---------------esposa
+cpf chave(p)                   cpf chave(p)cpf chave(e)
+nome chave(p)                  nome chave(p)
+lugar chave(p)                 lugar chave(p)               
+ 
+um-para-muitos
+
+---------------------------------------------------------------------------------------------------
+aula02 
+
+engine:
+innodb mecanismo permite criacao de tabela para suportar chave estrangeira
+
+acid
+TRANSACAO:toda acao que o banco de dados pode fazer é uma transacao
+e para acontecer precisa de 4 regras (acid)
+
+1-atomic:nao pode ser dividia em sub tarefas (toda tarefa é feita ou nada é considerado)
+
+2-consistencia: um banco de dados tem que ser consistente porque tem que estar ok antes e depois sem
+ocorrer falhas
+
+3-isolamento:uma transacao nao pode afetar a outra
+ex:uma transacao de um usuario nao pode afetar o outro usuario
+
+4-durabilidade:tem que durar o tempo que foi nescessario
+
+
+adicionar chave estrangeira:
+alter table gafanhotos
+add foreign key(cursopreferido)
+references cursos(idcurso);
+desc gafanhotos;
+
+adcionando o curso preferido da pessoa
+update gafanhotos set cursopreferido = '6' where id = '1';
+
+integridade referencial:
+nao posso apagar um campo sem afetar a minha transacao
+
+INNER JOIN está correta! O INNER JOIN é usado para combinar
+ linhas de duas ou mais tabelas com base em uma coluna comum.
+
+entidade1 | entidade2
+nome1,idade1 prof2,lugar2
+
+inner join:
+cassiano 19 programador brazil
+cassiano 19 dancarino sao leo
+maria 25 programador brazil
+maria 25 dancarino sao leo
+
+ou seja
+ 
+o inner join é para juntar uma entidade com a outra entidade
+mas se for isso para juntar uma na outra vai tem que repetir 
+as linhas da entidade1 para juntar com a entidade2 entao o on
+é para filtrar a relacao da entidade1 com a entidade2 que seria a linha de realcao
+apartir dessa linha eu posso selecionar o que eu quero dessa linha 
+
+exemplo:
+
+select gafanhotos.nome,
+gafanhotos.cursopreferido,
+cursos.nome,cursos.ano
+ from gafanhotos join cursos
+ on cursos.idcurso = gafanhotos.cursopreferido;
+
+resumindo:
+on:significa filtrar 
+
+as: no sql é para dar um apelido para abreviar
+ select * from cursos as c join gafanhotos as g
+on c.idcuro = g.cursopreferido;
+
+posso dar preferencia:dou preferencia para a entidade da esquerda ou da direita
+apartir da cardinalidade
+um-para-muitos
+nome         curso
+cassiano     mysql
+camila       dvinci
+joao         photoshop
+select g.nome,c.nome,c.ano 
+from gafanhotos as g right outer join cursos as c
+on c.idcurso = g.cursopreferido;
+
+
+resumo INNER JOIN
+ele considera somente as ligacoes da linha apartir da cardinalidade usada frequentemente 
+para um-para-muitos
+
+----------------------------------------------------------------------
+inner join com varias tabelas
+muitos-para-muitos
+
+para criar uma tabela muito-para-muitos tem que adicionar uma chave estrangeira 
+dos dois 
+
+create table if not exists gafanhoto_assiste_curso(
+id int not null auto_increment,
+datas date,
+idgafanhoto int,
+idcurso int,
+primary key (id),
+foreign key(idgafanhotos) references gafanhotos(id),
+foreign key(idcurso) references curso(idcurso)
+);
+
+insert into gafanhoto_assiste_curso values 
+(default,'2024-03-05','1','2');
+
+outer seria juntar ate os que nao tem relacao nenhuma 
+pode dar preferencia para as linhas de uma entidade
+ex:
+select * from cursos right outer join pessoas 
+on curso.id = pessoas.idpreferido
+
+deu preferencia as pessos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

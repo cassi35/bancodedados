@@ -1,0 +1,293 @@
+como criar banco de dados
+
+create databases
+create table 
+
+*** tipos primitivos 
+
+1)numericos 
+*inteiro: tinyint ,smallint, int, mediumint , bigint
+*real: decimal , float , double , real
+*logico: bit , bolean
+
+2)data / tempo
+*data , datatime , timeStamp , time , year
+
+3)literais 
+*caracter: chart , varChart  30letras
+*texto: tinyText, text, mediumText , longText  descricao de uma pessoa
+*binarios : tinyBlob , blob, mediumblob , longblob para reservar imagens 
+*colecoes : enum , set configurar os valores 
+
+4) esapciais
+*geomety , point , polygon , multiPolygon
+
+create TABLE pessoas(
+nome:varchat(30) NOT NULL;
+notnull quando eu nao quero que a pessoa nao tenha um nome 
+
+nascimento:date,
+
+sexo:enum('M','F'), um ou outro
+
+peso decimal(5,2), o segundo elemento do parametro indica quantas casas vao ter depois da virgula
+
+altura decimal(3,2),
+
+nacionaldiade varchar(20) default 'brasil'
+
+)default charset = utf8;
+
+use cadastros;
+create table pessoas (
+id int not null auto_increment,
+nome varchar(30) not null,
+nascimento date,
+sexo enum('M','F'),
+peso decimal(5,2),
+altura decimal(3,2),
+nacionalidade varchar(20) default 'Brasil',
+primary key(id)
+);
+
+--------------------------------------------
+DDL
+*data difination language
+usada para definir tabelas 
+create table
+
+insert into cadastros
+
+control + enter = executar
+drop database nome; 
+deletar 
+create databse nome;
+cria
+default character set utf8
+defoult collaete utf8
+
+insert into pessoas
+(id,nome,nascimento,sexo,peso,altura,nacionalidade)
+values
+('1','cassiano','2004-25-07','M','57.5','1.75','brasil');
+
+
+DDL
+(COMANDOS DE DEFINICAO)
+create database 
+create table
+alter table
+drop table
+
+DML
+(COMANDOS DE MANIPULACAO)
+insert into 
+update
+delete
+truncate
+---------------------------------------
+alter table pessoas
+add column profissao varchar(10)
+para adicinar uma coluna 
+
+alter table pessoas
+drop column profissao;
+para remover 
+
+
+alter table pessoas
+add column profissao varchar(30) after nome;
+
+alter table pessoas
+add column codigo int first
+colocar em primeiro
+
+alter table pessoas
+modify column profissao varchar(20) not null default '';
+modificar a coluna profissao que nao pode ser vazio 
+mas  para nao dar conflito se coloca um default padrao
+
+modify column profissao varchar(20);
+
+alter table pessoas
+change column profissao prof varchar(20);
+para modificar o nome da coluna 
+
+alter table pessoas
+rename to peerson 
+
+use cadastro
+create table if not exists cursos(
+nome varchar(30) not null unique,
+descricao text,
+carga int unsigned, sem sinal economiza um byte
+totaulas int default '2016', se nao tiver ano vai ficar como padrao 2016
+ano year
+);
+
+para adicionar uma chave de identificação
+alter table cursos add column idcurso int first
+alter table cursos
+add primary key(idcursos)
+
+insert into cursos values
+('1','html4','curso de html5','40','37','2014'),
+('2','algoritmos','logica de programacao','20','15','2014'),
+('3','photoshop','dicas de photoshop','10','8','2014'),
+('4','PGP','curso de php','40','20','2010'),
+('5','jarva','introducao a linguagem java','10','29','2000'),
+('6','mysql','curso de mysql','30','15','2016'),
+('7','word','curso de word completo','40','30','2016'),
+('8','sapateado','dancas ritimicas','30','40','2018'),
+('9','cozinha arabe','aprendda a fazer quibe','40','30','2018'),
+('','mysql','curso de mysql','30','15','2016')
+
+
+modificar uma linha
+update cursos
+set nome = 'html5'
+where idcurso = 1
+
+modifique a tabela cursos colocando no nome html 5
+que esta na linha id '1'
+
+para alterar varios ao mesmo tempo
+update cursos
+set nome = 'PHP', ano = '2015'
+where idcurso = '4';
+
+limit:
+limita quantas linhas que eu quero fazer uma alteracao
+update cursos
+set nome = 'java', ano = '2015', carga = '40'
+where idcurso = '5'
+limit 1;
+
+
+delete:
+delete from cursos
+where idcurso = '8'
+
+digamos que tenha varios que eu quero apagar 
+mesmo comando mas tenho que encontrar em alguma coluna
+que tenha o mesmo atributo 
+
+delete from cursos 
+where carga = '800'
+limit 2
+aqui tem duas cargas de 800
+
+truncate table cursos;
+para deçetar todos os registros de uma tabela
+
+
+
+-------------------------------------------------
+COPIAS 
+server
+data export
+selecionar
+dum extrcture = dump que é fazer um backup do banco de dados
+export to self content file
+
+para importar para um banco de dados 
+server 
+import
+selecionar o banco que eu quero
+clicar nos 3 pontinhos depois 
+start
+
+------------------------------------
+pelo TERMINAL 
+mysql -uroot -p
+use bancodedados;
+--------------------------------------
+select * from entregadores
+order by nome
+vai ordenar de acordo com a coluna que eu selecionar
+ou
+order by nome desc 
+de baixo para cima
+
+select nome,carga,ano from entregadores
+var selecionar somente as colunas que eu selecionei
+
+select * from cursos
+where ano <= '2016'
+order by nome 
+SE UTILIZA CONDIÇÕES RELACIONAIS PARA DETERMINAR O QUE EU QUERO SELECIONAR
+
+
+select * from cursos
+where ano between '2018' and '1016'
+order by ANO
+COLUNAS QUE ESTAO ENTRE 2018 e 2016
+
+
+select nome,descricao,ano from cursos
+where ano in ('2014','2016')
+order by ano
+CULUNAS QUE AONDE O ANO ESTA DENTRO DE 2014 e 2016
+
+select * from cursos
+where carga > 35 and totaulas < 30
+
+COLUNAS QUE A CARGA É MAIOR QUE 35 E TOTALAULAS É MENOR QUE 30
+
+-------------------------------
+select * from cursos
+where nome like 'p%'
+like = semelhança
+% nenhum ou varios carcteres
+entao 
+secione todos os cursos aonde o se pareça com p
+
+
+posicao do % importa 
+%a = que começam no final
+'%A%' = aonde o a tem em qualquer lugar
+
+select distinct nacionalidade from gafanhotos
+order by nacionalidade
+distinct ele distingue qual quais sao diferentes 
+e lista quais sao iguais
+
+select count(*) from cursos 
+conta todos os cursos
+
+select max(carga) from cursos
+---------------------------------------------------------
+select carga
+group by carga
+uni os select 
+SELECT SupplierID,SupplierName FROM Suppliers
+where SupplierID between 1 and 5
+union
+ SELECT CustomerID,CustomerName FROM Customers
+ where CustomerID between 1 and 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

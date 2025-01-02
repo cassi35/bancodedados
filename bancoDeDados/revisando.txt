@@ -1,0 +1,328 @@
+banco de dados 
+1-agrupar coisas que tem caracteristicas semelhantes e 
+separar coisas que tem caracteristicas diferentes
+e pegar essas caracteristicas difrentes agrupar para que todas as coisas
+agrupadas se tornem semelhantes
+
+2-pegas coisas semelhantes e colocar
+em um banco de dados
+
+3-sao colecoes de dados que tem caracteristicas separaddas
+mas que estao organizados em locais especificos
+
+4-assim estao dentro de tabelas 
+
+*banco de dados conjuntos de tabelas 
+*tabelas conjunto de dados de registros
+
+create databse cadastro;
+
+banco de dados -> tabelas -> registros -> campos
+campos:sexo,peso,altura e etc...
+-------------------------||------------------------------
+
+(tipos primitivos) 
+*numerico: inteiros , reais , logicios
+*data / tempo: 
+*literais: caracteres , texto , binarios , colecoes
+*espaciais:
+
+use cadastros;
+create table pessoas(
+id int NOT NULL auto_increment,
+nome varchar(30),
+nascimento date,
+sexo enum('m','f'),
+peso decimal(5,2),
+altura decimal(3,2),
+nacionalidade varchar(20) DEFAULT 'brasil',
+primary key (id)
+)
+
+describe pessoas;
+drop database cadastros;
+
+parametros:constrangs
+
+not null campos obrigatorios
+
+decimal (5,2) 5 casas e dois pos virgula
+
+
+DDL 
+sao comandos de DEFINICAO mecher na estrutura do banco de dados
+Os comandos DDL são usados para criar, modificar e 
+excluir objetos do banco de dados, como tabelas, colunas, índices e views.
+
+Alguns exemplos de comandos DDL:
+    CREATE TABLE: Cria uma nova tabela.
+    ALTER TABLE: Modifica uma tabela existente.
+    DROP TABLE: Exclui uma tabela.
+    CREATE INDEX: Cria um índice em uma tabela.
+    DROP INDEX: Exclui um índice de uma tabela.
+    CREATE VIEW: Cria uma view.
+    DROP VIEW: Exclui uma view.
+
+
+DML
+data manipulation language 
+manipulando os dados da tabela
+insert into pessoas
+(id,nome,nascimento,sexo,peso,altura,nacionalidade)
+value
+('1','cassinao','2004-07-25','m','78.5','1.74','brasil');
+
+select * from pessoas;
+selecione tudo de pessos
+
+
+outra maneira de inserir dados
+insert into pessoas values
+(DEFAULT,'pedro','1999-07-25','m','98.5','1.94','brasil');
+select * from pessoas;
+
+
+
+
+-------------------------------------
+SEGUE ESSA ORDEM NOS COMANDOS
+banco de dados --> tablelas --> (campos) == colunas
+
+alter table pessoas
+add column profissao varchar(10) (adicionar um coluna)
+
+; quer dizer que acabou o codigo 
+
+desc pessoas;
+alter table pessoas drop column profissao; (remover uma coluna)
+
+desc pessoas;
+alter table pessoas
+add column profissao varchar(10) after nome; (adicionar uma coluna depois de uma coluna escolhida)
+
+desc pessoas;
+alter table pessoas
+add column profissao int first;(adicionar na primeria posicao)
+
+alter table pessoas
+modify column profissao varchar(20); (modificar a culuna)
+
+desc pessoas;
+alter table gafanhotos rename to pessoas; (renomer o nome da tabela)
+
+
+use registrar;
+create table if not exists cursos(
+nome varchar(30) not null unique,
+descricao text,
+totalaulas int,
+carga int unsigned,
+ano year default '2024'
+);
+
+---------------------------------------------
+
+manipular registros /linhas 
+
+registro sao as linhas :
+cassiano 18anos masculino ...
+__________________
+
+
+tudo que estiver em coluna é campo ou atributos:
+nome| profissao |peso   |altura ...
+    |           |       |
+    |           |       |
+
+
+MODIFICANDO AS LINHAS :
+modificar a tablea curso modificar o conteudo da coluna nome para html5
+onde o id seja um 
+
+update cursos
+set nome = 'html5'
+where idcurso = '1'
+
+fazer update na tabela curso codificar o conteudo da coluna nome e ano aonde a linha id é 4
+update cursos
+set nome = 'php' , ano = '2015'
+where idcurso = '4'
+limit 1;
+limitando uma somente para modificar uma linha
+ 
+
+excluir um registro 
+delete from cursos where idcurso = '8'
+
+apagar todos os registros 
+truncate  cursos;
+
+
+
+------------------------------------------------------
+(gerenciamento de copias)
+
+backup de banco de dados :DUMP 
+
+posso importar e exportar
+com .sql
+------------------------------------
+
+(select 01)
+select * from cursos ;
+
+selecione todos os registros e todas as culunas 
+
+
+FILTRANDO ELEMENTOS EM ORDEM ALFABETICA
+no caso é o nome:
+*)select * from curso
+orderby nome
+
+quando adicionar order by nome desc significa que vai fazer em ordem alfabetica de baixo
+para cima
+
+FILTRANDO CAMPOS
+*)select nome,carga,ano from cursos
+
+FILTRAR LINHA
+select * from gafanhotos
+where nacionalidade = 'Brasil';
+
+(POSSO USAR VALORES RELACIONAIS COMO >= <= != ==)
+select nome,descricao,ano from cursos
+where ano != '2016'
+order by ano,nome;
+
+(SELECIONAR UMA COISA QUE ESTEJA ENTRE UMA E OUTRA CoiSA)
+select nome,ano from cursos
+where ano btween 2014 and 2016
+
+(SELECIONANDO EM QUAL QUE EU QUERO)
+select nome ,descricao , ano from cursos
+where ano in (2014,2016);
+
+()
+select * from cursos uma coisa e outra
+where carga > 35 and total aulas < 30;
+
+uma coisa ou outra coisa
+select * from curso where idade >= 50 or idade <= 40;
+
+      ---------------------_||------------------
+LIKE:é semelhante / parecido
+select nome from gafanhotos
+where nome like 'M%'; 
+
+'%a':a no final
+'a%': a no inicio
+'%a%':registros de a em qualquer lugar
+'ph%p_': registor que começam com ph e terminm com p seguidos de alguma coisa
+
+not like '%a%':significa que eu nao quero uma coluna ou linha que tenha a 
+
+
+DISTINCT:(coisas distintas)
+significa quando eu quero 1 registro de cada tipo
+ex: pais tem um de cada
+select distinct nacionalidade from gafan
+
+COUNT:contar quantos elemntos foi puxado no banco de dados
+select count(*) nome from cursos where carga >= 18;
+foram 7 elementos puxados no banco de dados
+
+
+MAX :Maximo no tatal dos campos
+select max(totalaulas) from cursos;
+
+MIN:Minino no tatal dos campos
+select min(totalaulas) from cursos;
+
+SUM:sum retorna o calculo maximo 
+select sum(carga) from cursos; vai somar todas as cargas
+
+
+
+
+FUNCAO DE AGRAGACAO
+funcao de calcula a media 
+select avg(totalaulas) from cursos;
+
+------------------------__|_|-------------------------------
+(SELECT 03)
+
+select top:
+selecionando somente os primeros que eu quero
+select top 5 form cursos
+
+distinguir : distinguir os elementos 
+agrupar: agrupar os eleemntos nao distinguir 
+
+nesse agrupamento ele permite mostrar 
+quantos nomes tem esse grupo 
+resumo:permite mostrar tudo que foi agrupado
+
+select totalaulas,count(*) from cursos group by totalaulas;
+agrupei os totalaulas e mostrei quantos que tem 
+
+exemplos:
+use CursoVideo;
+select altura,count(*) from gafanhotos where peso > 75.0
+ group by altura
+having altura >= (select avg(altura) from gafanhotos); 
+
+
+use CursoVideo;
+select totalaulas,  count(*) from cursos group by totalaulas
+having count(nome) > 2;
+
+select ano,count(*) from cursos group by ano 
+having count(ano) >= 2
+order by count(*) desc; 
+
+select carga,count(*) from cursos where ano > 2015 group by carga;
+
+select carga,count(*) from cursos where ano > 2015 group by carga
+having carga > (select avg(carga) from cursos); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

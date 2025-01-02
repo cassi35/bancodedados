@@ -1,0 +1,106 @@
+use acme 
+
+db.createCollections('colecao') *cria um banco de dados
+
+use bancoDeDados
+
+db.colection.insertOne()
+
+cadastrar> db.estudantes.insertMany([{},{},{}]) inserir arrays 
+
+db.estudantes.find() * mostra o elementos do banco de dados
+ 
+cadastrar> db.estudantes.find().sort({nome:1}) ordem crescente / -1 order decrescente
+
+cadastrar> db.estudantes.find().limit(1) * limita 
+ 
+cadastrar> db.estudantes.find({nome:"marcelo"}) * retorna o elemnto da dentro da tabela que 
+tem margelo como elemntos 
+
+ cadastrar> db.estudantes.find({},{nome:true}) todos que tentam um id e um nome
+
+ cadastrar> db.estudantes.updateOne({name:"marcelo"},{$set:{nome:"alesandro"}})
+ele fitra e modifica no segundo parametro com $set 
+
+ cadastrar> db.estudantes.updateMany({},{$set:{data:true}})
+altera varios de uma vez só primeiro parenteses filtra quais elementos depois no segundo ele 
+faz o update de todos os elemntos que batem com o primeiro parametro 
+
+
+cadastrar> db.estudantes.deleteOne({nome:"alesandro"})
+deletar elementos com o nome alesandro
+
+cadastrar> db.estudantes.deleteMany({data:{$exists:true}})
+delete a data se existir 
+
+ cadastrar> db.estudantes.find({name:{$ne:"cassiano"}})
+achar os elemntos que nao tenha o nome cassiano $ne
+
+cadastrar> db.estudantes.find({idade:{$lt:20}})
+filtra elemento numeroinferior a 20 no exemplo é a idade
+
+
+cadastrar> db.estudantes.find({idade:{$lte:18}})
+inferior ou igual a 18 
+
+
+ cadastrar> db.estudantes.find({idade:{$gte:12,$lte:18}})
+maior que 12 ou igual a 18
+
+cadastrar> db.estudantes.find({nome:{$in:["cassiano","maria"]}})
+rotorna os elementos da tabela que tenha dentro de nome cassiano ou maria
+
+ cadastrar> db.estudantes.find({nome:{$nin:["cassiano","pedro"]}})
+todos os elementos que nao tenham esses valores
+
+
+logical query operators
+só retorna valores logicos como true ou false
+entre eles sao $and , $not , $nor , $or
+
+cadastrar> db.estudantes.find({$and:[{data:true},{idade:{$lte:22}}]})
+AND dois TRUE
+data tem que ser true E idade <= 22
+
+
+cadastrar> db.estudantes.find({$or:[{data:true},{idade:{$lte:22}}]})
+OR tem que ser TRUE ou FALSE
+data:true ou a idade <= 22
+
+
+cadastrar> db.estudantes.find({$nor:[{data:true},{idade:{$lte:22}}]})
+NOR aonde ambas sao falsa
+
+
+
+cadastrar> db.estudantes.find({idade:{$not:{$gte:30}}})
+NOt todos os elementos que nao tem o elemento 
+
+
+cadastrar> db.createCollection("notas",{capped:true,size:10000000,max:100})
+capped informa ao mongo db que tem que ter um tamanho min e max 
+size 10bytes == 1000000 como max ou eu posso ter 100 documentos na minah colecao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

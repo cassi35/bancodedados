@@ -1,0 +1,14 @@
+insert into candidato values 
+(default,'Alaska','2020','repubicano'),
+(default,'Alabama','2011','democrata'),
+(default,'Arkansas','1999','replicano'),
+(default,'Arizona','2024','democrata'),
+(default,'California','1980','repubicano'),
+(default,'Colorado','1977','democrata');
+UPDATE `congressoAmericano`.`candidato` SET `nome` = 'trump' WHERE (`id` = '1');
+----------------------------
+congresso americano database
+links
+https://pt.wikipedia.org/wiki/Lista_dos_senadores_dos_Estados_Unidos
+
+https://www.eecs.yorku.ca/course_archive/2016-17/F/3421/project/exercise-ans.pdf

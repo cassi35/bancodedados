@@ -1,0 +1,99 @@
+existe uma logica no banco de dado relacional
+modelo conceitual:
+palavras indicando como que vai ser o sistema e o que tem que ter nesse sistema 
+endereço -->tem--> cliente --> compra --> veiculo --> e --> caminhão
+
+modelo danki code
+cliente -->realiza --> compras 
+aluno --> possui --> matricula
+professor --> leciona --> aula 
+
+sao identificados por id
+modelo logico
+tabelas
+-------------
+pk categoria |
+     |
+     |	
+-------------
+ pk produtos |
+    |
+    |
+-------------
+pk pedidos  |
+    |
+    |
+-----------------
+pk pedidos itens|
+    |
+    |
+
+---------------
+    clientes  |
+
+o banco de dados pode mudar 
+
+
+existe modelo fisico 
+modelo logico com colunas especificadas o que elas vao ser 
+
+utilizando na pratica 
+PHP,Nodejs,Pyton 
+banco de dados resolve problemas que nao se consegue resolver com dados estaticos 
+
+queryes sao comandos que se envia pro banco de dados 
+banco de daods relacional sql 
+banco de dados nao relacional mql
+
+mySql 
+banco de dados relacional
+escalavel
+rapido
+facil integração com qualquer tecnologia
+gratis
+comunidade enorme 
+
+mongoDB 
+banco de dados nao relacional
+extremamente rapido
+perfeito para aplicações grandes
+mongoDB atlas 
+normalmente utilizado com nodeJS
+-----------------------------------------------
+diagrama der
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

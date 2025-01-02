@@ -1,0 +1,35 @@
+create database banco;
+use banco;
+create table cartao(
+idCartao int not null auto_increment,
+numeroCartao  tinyint,
+bandeira tinytext,
+banco tinytext,
+idPessoa int,
+primary key(idCartao),
+foreign key(idPessoa) references pessoa(id)
+);
+create database banco;
+use banco;
+create table cartao(
+idCartao int not null auto_increment,
+numeroCartao  tinyint,
+bandeira tinytext,
+banco tinytext,
+idPessoa int,
+primary key(idCartao),
+foreign key(idPessoa) references pessoa(id)
+);
+insert into pessoa values 
+(default,'cassiano','2013'),
+(default,'maria','2001'),
+(default,'pedro','1978'),
+(default,'henrique','1980'),
+(default,'pedro','2003'),
+(default,'antonio','2004');
+insert into cartao values
+(default,'12','visa','itau','2');
+select * from pessoa join cartao
+on cartao.idPessoa = pessoa.id;
+
+

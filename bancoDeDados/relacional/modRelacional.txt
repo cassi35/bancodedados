@@ -1,0 +1,185 @@
+modelos relacionais
+
+1-entidade é um conteiner aonde eu vou colocar dados de algo ou de uma pessoa
+toda entidade tem atributos definidos que sao os dados das pessoas
+
+2-e essas entidades tem uma relação ex : uma entidade se relaciona com outra entidade
+elas se relacionam entre si 
+der 
+como o modelo relacional vai se relacionar 
+
+3- cardinalidade seria as relações das entidades mas com uma identificaçõo
+um ganfanhoto que é uma entidade 
+*pode assistir 
+*um numero de 
+*cursos e vs
+
+muitos-para-muitos 
+
+marido casa com esposas
+    1              1
+pessoa1          pessoa2
+pessoa2          pessoa2
+
+um-para-um
+
+
+funcionarios cuida dependete
+  1                    n           
+pessoa1           dependente1
+pessoa2           dependente2
+pessoa3           dependente3
+
+um-para-muitos
+
+
+cliente compra produtos
+  n                   n
+ciente1         produto1
+ciente2         produto2
+ciente3         produto3
+
+muitos-para-muitos
+
+
+
+
+
+4-(chaves) nenhum atributo pode ter uma chave igual
+
+em um mundo um continente tem uma chave primaria
+outro continente tem outra chave primaria 
+OU SEJA
+para relacionar uma chave primaria com outra chave primaria 
+tem que ter uma chave  ESTRANGEIRA
+
+marido casa com esposas
+    1              1
+pessoa1          pessoa2
+pessoa2          pessoa2
+
+
+marido            esposa
+cpf e              cpf p
+nome  e            nome p
+nascimento e       nascimento p
+
+p:chave dominante
+p:chave estrangeira
+
+no caso o que se relacionou foi a chave estrangeira que se relacionou com o doninte 
+que é o marido e a chave dominante que é o marido se relacionou com a estrangeira 
+que é a esposa
+
+UM-PARA-um 
+
+
+funcionarios cuida dependete
+  1                    n           
+pessoa1   p       dependente1 p e
+pessoa2           dependente2
+pessoa3           dependente3
+
+um-para-muitos
+
+
+cliente 1 --- compra ---    1 produtos
+            n      n
+ciente1 p  e id-compra e     produto1 p 
+ciente2    e data  e         produto2 
+ciente3    e formaDeP e      produto3
+
+muitos-para-muitos
+
+a compra virou uma entidade 
+
+
+
+-------------------------------------------------------
+part2
+ferramentas que permitem as chaves estrangeiras
+
+innodb 
+xtradb agins
+
+ACID
+1-atomica
+2-consistencia
+3-isolamento
+4-durabilidade
+
+toda acao é uma transaoção
+nao pode ser dividia em subtarefas 
+tem que ser atomica (ou tudo acontece ou nada é considerado)
+
+
+gafanhotos  prefere   curso
+  pessoa01   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
