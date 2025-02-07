@@ -1,0 +1,8 @@
+Draw an ERD for the following scenario (show cardinality). Translate the diagram into tables:
+A sales-person may manage many other sales-people. A sales-person is managed by only one
+sales-people. A sales-person can be an agent for many customers. A customer is managed by
+one sales-person. A customer can place many orders. One customer can place each order. An
+order lists many inventory items. An inventory item may be listed on many orders. An inventory
+item is assembled from many parts. A part may be assembled into many inventory items. Many
+employees assemble an inventory item from many parts. A supplier supplies many parts. Many
+suppliers may supply the same part.
