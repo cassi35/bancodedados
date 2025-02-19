@@ -1,0 +1,91 @@
+Draw an ERD for the following scenario (show cardinality). Translate the diagram into tables:
+The university has several academic departments. Each department has a unique name and a
+street address (number, street name) associated with it. The departments offer courses with
+distinct names, each of which is taught by a single professor and one or more TAs. A TA can
+only be assigned to one course. The course is offered once a week at a fixed time. Students
+belong to a single department but can register for courses offered by any department. When a
+student takes a course, he/she is assigned to a TA for help (i.e., each TA of the course helps
+different set of students). Each person (professor, student, TA) has a name and a unique SSN.
+Professor and TA also earn a salary. Finally, the university also wants to keep track of the one
+or more languages that the TA can speak
+
+selects:
+SELECT 
+    a.nome AS aluno_nome,
+    c.nome AS curso_nome,
+    d.nome AS departamento_nome
+FROM aluno a
+JOIN cursos c ON a.id_curso = c.id_curso
+JOIN departamento d ON a.id_departamento = d.id;
+
+SELECT 
+    p.nome AS professor_nome,
+    c.nome AS curso_nome,
+    d.nome AS departamento_nome
+FROM professor p
+JOIN cursos c ON p.id_curso = c.id_curso
+JOIN departamento d ON p.id_departamento = d.id;
+SELECT 
+    t.nome AS ta_nome,
+    t.salario,
+    c.nome AS curso_nome
+FROM ta t
+JOIN cursos c ON t.id_curso = c.id_curso;
+
+SELECT 
+    t.nome AS ta_nome,
+    t.salario,
+    c.nome AS curso_nome
+FROM ta t
+JOIN cursos c ON t.id_curso = c.id_curso;
+
+SELECT 
+    c.nome AS curso_nome,
+    COUNT(a.id_aluno) AS total_alunos
+FROM cursos c
+LEFT JOIN aluno a ON c.id_curso = a.id_curso
+GROUP BY c.nome;
+SELECT 
+    a.nome AS aluno_nome,
+    c.nome AS curso_nome
+FROM aluno a
+JOIN cursos c ON a.id_curso = c.id_curso
+WHERE a.id_ta IS NULL;
+
+SELECT 
+    d.nome AS departamento_nome,
+    COUNT(c.id_curso) AS total_cursos
+FROM departamento d
+LEFT JOIN cursos c ON d.id = c.id_departamento
+GROUP BY d.nome;
+
+SELECT 
+    t.nome AS ta_nome,
+    t.lingua,
+    t.salario
+FROM ta t
+WHERE t.lingua = 'Inglês' AND t.salario > 2800.00;
+
+SELECT 
+    a.nome AS aluno_nome,
+    t.nome AS ta_nome,
+    c.nome AS curso_nome,
+    d.nome AS departamento_nome
+FROM aluno a
+LEFT JOIN ta t ON a.id_ta = t.id
+JOIN cursos c ON a.id_curso = c.id_curso
+JOIN departamento d ON a.id_departamento = d.id;
+
+SELECT 
+    c.nome AS curso_nome,
+    p.nome AS professor_nome,
+    d.nome AS departamento_nome
+FROM cursos c
+JOIN professor p ON c.id_curso = p.id_curso
+JOIN departamento d ON c.id_departamento = d.id;
+SELECT 
+    d.nome AS departamento_nome,
+    SUM(t.salario) AS salario_total
+FROM ta t
+JOIN departamento d ON t.id_departamento = d.id
+GROUP BY d.nome;
