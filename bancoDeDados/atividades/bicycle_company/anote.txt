@@ -1,0 +1,20 @@
+A well known bicycle company stores its data in a special database. Company has customers and
+products.
+ All customers have a unique customer_id.
+ Customers are categorized as foreign customers or domestic customers. A customer must
+be foreign or domestic, and can not belong to both of the categories at the same time.
+ Foreign customers are identified by their unique id, currency, company name and address
+composed of city state and zipcode.
+ Domestic customers are identified by their unique id, name and address. Domestic
+customers may have more than one address information.
+ Products are identified by unique product_id, model, type and price.
+ Only two type of products are produced in this company. These product types are Bike and
+Mountain Bike.
+ Each bike has color and cycle attributes.
+ Each mountain bike has cycling team attribute.
+ A product may belong to at least one of this types. Moreover it may belong to both of them
+at the same time.
+ Customers may request products. And a product may be requested by more than one
+customer, also it may not be requested by any customer at all.
+ When a product is requested or ordered by a customer; request id, request type and request
+content information is stored.
